@@ -89,6 +89,11 @@
     padding: 7px 16px; border-radius: 100px;
   }
   .hero-pill.lime { border-color: var(--lime); color: var(--lime); }
+  .hero-pill.urgent {
+    background: var(--lime); color: var(--black); border: none; font-weight: 900;
+    animation: pulse-pill 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-pill { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
@@ -258,12 +263,27 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-  .price-card.featured { background: var(--black); color: var(--white); border-color: var(--black); }
+  .price-card.featured {
+    background: var(--black); color: var(--white);
+    border-color: var(--lime); border-width: 3px;
+    box-shadow: 0 0 0 6px rgba(200,240,0,0.1), 0 16px 48px rgba(0,0,0,0.25);
+    transform: scale(1.02);
+  }
+  .price-card.featured:hover { transform: scale(1.02) translateY(-4px); }
   .price-badge {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
     font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
     background: var(--lime); color: var(--black);
     padding: 5px 16px; border-radius: 100px; white-space: nowrap;
+  }
+  .price-badge.urgent-badge {
+    font-size: 13px; font-weight: 900; letter-spacing: 0.5px;
+    padding: 9px 24px; box-shadow: 0 6px 20px rgba(200,240,0,0.4);
+    animation: pulse-badge 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-badge {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.07); }
   }
   .price-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.45; margin-bottom: 12px; }
   .price-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
@@ -272,11 +292,16 @@
   .price-sub { font-size: 13px; opacity: 0.5; margin-bottom: 20px; }
   .price-detail { font-size: 13px; line-height: 1.6; opacity: 0.7; }
   .price-card.featured .price-amount { color: var(--lime); }
+  .price-urgency {
+    font-size: 13px; font-weight: 700; line-height: 1.5;
+    color: var(--black); background: var(--lime);
+    border-radius: 12px; padding: 12px 16px; margin-bottom: 18px;
+  }
   .price-save {
-    display: inline-block; margin-top: 14px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    display: inline-block; margin-top: 16px;
+    font-size: 13px; font-weight: 900; letter-spacing: 0.5px;
     background: var(--lime); color: var(--black);
-    padding: 5px 12px; border-radius: 100px;
+    padding: 8px 18px; border-radius: 100px;
   }
 
   /* ── FINAL CTA ── */
@@ -333,13 +358,13 @@
       Sumale<br>
       <span class="hl">criterio.</span>
     </h1>
-    <p class="hero-subtitle">Elegí tu cápsula. O llevate las tres.</p>
-    <p class="hero-sub">Tres encuentros en vivo de 2 horas, cada uno con una especialista invitada — pensados para reclutadoras y reclutadores que ya están en acción y quieren profundizar en un tema puntual: IA, entrevistas o procesos inclusivos.</p>
+    <p class="hero-subtitle">Elegí tu cápsula. O llevate las 3 con 3x2 — última chance antes del 14/7.</p>
+    <p class="hero-sub">Tres encuentros en vivo de 2 horas, cada uno con una especialista invitada — pensados para reclutadoras y reclutadores que ya están en acción y quieren profundizar en un tema puntual: IA, entrevistas o procesos inclusivos. Después del 14/7 la cápsula de IA ya pasó, y el pack de las 3 deja de existir.</p>
     <div class="hero-pills">
+      <span class="hero-pill urgent">⏳ 3x2 vence el 14/7</span>
       <span class="hero-pill lime">3 cápsulas independientes</span>
       <span class="hero-pill">2hs en vivo c/u</span>
       <span class="hero-pill">Martes 18:30hs</span>
-      <span class="hero-pill">Especialistas invitadas</span>
     </div>
     <div class="hero-btns">
       <a class="btn-primary" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero entrar a una cápsula</a>
@@ -595,11 +620,10 @@
         <p class="price-detail">Acceso a un encuentro en vivo de 2hs con la especialista invitada. Ideal si te interesa un tema puntual.</p>
       </div>
       <div class="price-card featured">
-        <span class="price-badge">Más conveniente</span>
+        <span class="price-badge urgent-badge">🔥 ÚLTIMA CHANCE · VENCE 14/7</span>
         <p class="price-label">Pack x3 · Promo 3x2</p>
-        <span class="price-emoji">🔥</span>
         <p class="price-amount"><span class="currency">ARS</span> 140.000</p>
-        <p class="price-sub">Por transferencia · Las 3 cápsulas</p>
+        <p class="price-urgency">⏳ Después del 14/7 la cápsula de IA ya pasó y el pack de las 3 deja de existir. Esta es la única ventana para llevártelas todas.</p>
         <p class="price-detail">Te llevás las 3 cápsulas — IA, Preguntas y DEI — y pagás como si fueran 2.</p>
         <span class="price-save">Ahorrás ARS 70.000</span>
       </div>
