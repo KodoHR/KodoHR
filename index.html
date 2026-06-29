@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formación en Reclutamiento Estratégico — KODO</title>
+<title>Cápsulas Kodo — Formación en Reclutamiento Estratégico</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -62,8 +62,8 @@
     color: var(--lime); margin-bottom: 28px;
   }
   .hero-title {
-    font-size: clamp(44px, 7.5vw, 96px);
-    font-weight: 900; line-height: 0.92; letter-spacing: -3px;
+    font-size: clamp(40px, 7vw, 88px);
+    font-weight: 900; line-height: 0.95; letter-spacing: -3px;
     color: var(--white); text-transform: uppercase;
     max-width: 820px;
   }
@@ -72,9 +72,13 @@
     background: var(--lime); color: var(--black);
     padding: 2px 14px; transform: rotate(-1deg); line-height: 1.05;
   }
+  .hero-subtitle {
+    margin-top: 24px; font-size: clamp(18px, 2.4vw, 24px); font-weight: 900;
+    color: var(--lime); letter-spacing: -0.5px; text-transform: uppercase;
+  }
   .hero-sub {
-    margin-top: 28px; font-size: clamp(16px, 2vw, 20px); font-weight: 400;
-    color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.55;
+    margin-top: 18px; font-size: clamp(16px, 2vw, 20px); font-weight: 400;
+    color: rgba(255,255,255,0.6); max-width: 580px; line-height: 1.55;
   }
   .hero-pills {
     display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px;
@@ -104,6 +108,15 @@
     transition: border-color 0.2s, color 0.2s;
   }
   .btn-secondary:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+  .btn-small {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--black); color: var(--lime);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 12px 22px; border-radius: 100px; text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .btn-small:hover { transform: scale(1.04); }
+  .capsule-card.lime-bg .btn-small { background: var(--black); color: var(--lime); }
   .hero-deco {
     position: absolute; right: -80px; top: -80px;
     width: 500px; height: 500px;
@@ -123,7 +136,7 @@
     border-top: 2px solid var(--black); border-bottom: 2px solid var(--black);
     padding: 11px 0;
   }
-  .ticker-inner { display: flex; white-space: nowrap; animation: ticker 24s linear infinite; }
+  .ticker-inner { display: flex; white-space: nowrap; animation: ticker 26s linear infinite; }
   .ticker-inner span {
     font-size: 12px; font-weight: 900; letter-spacing: 2px;
     text-transform: uppercase; padding-right: 56px;
@@ -148,13 +161,23 @@
     text-transform: uppercase; margin-bottom: 12px;
   }
   .section-title .accent { background: var(--lime); padding: 0 8px; color: var(--black); }
-  .section-intro { font-size: 17px; color: #555; line-height: 1.65; max-width: 620px; margin-bottom: 48px; }
+  .section-intro { font-size: 17px; color: #555; line-height: 1.65; max-width: 640px; margin-bottom: 48px; }
   section.dark .section-intro { color: rgba(255,255,255,0.55); }
 
-  /* ── PAIN POINTS ── */
-  .pain-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;
+  /* ── STATS BAR ── */
+  .stats-bar {
+    border-top: 2px solid var(--black); border-bottom: 2px solid var(--black);
+    display: grid; grid-template-columns: repeat(4, 1fr);
   }
+  @media (max-width: 640px) { .stats-bar { grid-template-columns: 1fr 1fr; } }
+  .stat-item { padding: 32px 28px; border-right: 2px solid var(--black); }
+  .stat-item:last-child { border-right: none; }
+  @media (max-width: 640px) { .stat-item:nth-child(2) { border-right: none; } .stat-item:nth-child(3) { border-right: 2px solid var(--black); } }
+  .stat-num { font-size: 38px; font-weight: 900; letter-spacing: -2px; line-height: 1; color: var(--black); }
+  .stat-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--mid-gray); margin-top: 6px; }
+
+  /* ── PAIN POINTS ── */
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
   @media (max-width: 640px) { .pain-grid { grid-template-columns: 1fr; } }
   .pain-item {
     background: var(--white); border: 2px solid var(--black);
@@ -163,176 +186,56 @@
     transition: background 0.2s;
   }
   .pain-item:hover { background: #fff8cc; }
-  .pain-check {
-    font-size: 18px; margin-top: 2px; min-width: 24px;
-  }
+  .pain-check { font-size: 18px; margin-top: 2px; min-width: 24px; }
   .pain-text { font-size: 15px; line-height: 1.55; font-weight: 500; color: var(--text); }
 
-  /* ── DIFERENCIADORES ── */
-  .diff-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 12px;
+  /* ── CÁPSULAS ── */
+  .capsules-stack { display: flex; flex-direction: column; gap: 20px; margin-top: 12px; }
+  .capsule-card {
+    border: 2px solid var(--black); border-radius: 24px; padding: 36px;
+    background: var(--white); position: relative; overflow: hidden;
   }
-  @media (max-width: 780px) { .diff-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .diff-grid { grid-template-columns: 1fr; } }
-  .diff-card {
-    background: var(--black); color: var(--white);
-    border-radius: 20px; padding: 28px 24px;
-    position: relative; overflow: hidden;
+  .capsule-card.dark-bg { background: var(--black); color: var(--white); }
+  .capsule-top {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
+    gap: 16px; margin-bottom: 22px; padding-bottom: 22px;
+    border-bottom: 1.5px solid rgba(0,0,0,0.1);
   }
-  .diff-card.lime-bg { background: var(--lime); color: var(--black); }
-  .diff-num {
-    font-size: 48px; font-weight: 900; line-height: 1;
-    color: var(--lime); margin-bottom: 8px;
+  .capsule-card.dark-bg .capsule-top { border-bottom-color: rgba(255,255,255,0.12); }
+  .capsule-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    background: var(--lime); color: var(--black);
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; display: inline-block;
   }
-  .diff-card.lime-bg .diff-num { color: var(--black); opacity: 0.2; }
-  .diff-title { font-size: 17px; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; line-height: 1.2; }
-  .diff-body { font-size: 13px; line-height: 1.6; opacity: 0.7; }
-
-  /* ── STATS BAR ── */
-  .stats-bar {
-    border-top: 2px solid var(--black); border-bottom: 2px solid var(--black);
-    display: grid; grid-template-columns: repeat(4, 1fr);
-  }
-  @media (max-width: 640px) { .stats-bar { grid-template-columns: 1fr 1fr; } }
-  .stat-item {
-    padding: 32px 28px; border-right: 2px solid var(--black);
-  }
-  .stat-item:last-child { border-right: none; }
-  @media (max-width: 640px) { .stat-item:nth-child(2) { border-right: none; } .stat-item:nth-child(3) { border-right: 2px solid var(--black); } }
-  .stat-num {
-    font-size: 42px; font-weight: 900; letter-spacing: -2px; line-height: 1;
-    color: var(--black);
-  }
-  .stat-num .lime { color: var(--lime); background: var(--black); padding: 0 4px; border-radius: 4px; }
-  .stat-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--mid-gray); margin-top: 6px; }
-
-  /* ── METODOLOGÍA ── */
-  .meta-grid {
-    display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
-  }
-  @media (max-width: 720px) { .meta-grid { grid-template-columns: 1fr; gap: 32px; } }
-  .meta-image {
-    border-radius: 20px; overflow: hidden;
-    border: 3px solid var(--black);
-    aspect-ratio: 4/3; object-fit: cover; width: 100%;
-    display: block;
-  }
-  .meta-items { display: flex; flex-direction: column; gap: 20px; }
-  .meta-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding-bottom: 20px; border-bottom: 1px solid #e5e5e5;
-  }
-  .meta-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .meta-icon {
-    width: 42px; height: 42px; min-width: 42px;
-    background: var(--lime); border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-  }
-  .meta-item-title { font-size: 15px; font-weight: 900; text-transform: uppercase; margin-bottom: 3px; }
-  .meta-item-body { font-size: 13px; color: #555; line-height: 1.5; }
-
-  /* ── OUTCOMES ── */
-  .outcomes-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;
-  }
-  @media (max-width: 600px) { .outcomes-grid { grid-template-columns: 1fr; } }
-  .outcome-item {
-    background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12);
-    border-radius: 18px; padding: 24px 26px;
-    display: flex; gap: 16px; align-items: flex-start;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .outcome-item:hover { border-color: var(--lime); background: rgba(200,240,0,0.06); }
-  .outcome-icon {
-    width: 36px; height: 36px; min-width: 36px;
-    background: var(--lime); border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .outcome-title { font-size: 15px; font-weight: 900; color: var(--white); margin-bottom: 4px; }
-  .outcome-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
-
-  /* ── PROGRAMA ── */
-  .programa-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;
-  }
-  @media (max-width: 640px) { .programa-grid { grid-template-columns: 1fr; } }
-  .prog-item {
-    border: 2px solid var(--black); border-radius: 16px; padding: 20px 22px;
-    display: flex; gap: 16px; align-items: flex-start;
-    background: var(--white);
-    transition: background 0.2s, transform 0.15s;
-  }
-  .prog-item:hover { background: var(--lime); transform: translateY(-2px); }
-  .prog-item.kickoff { background: var(--black); color: var(--white); }
-  .prog-item.kickoff:hover { background: #1a1a1a; }
-  .prog-item.capsula { border-style: dashed; border-color: #aaa; }
-  .prog-num {
-    font-size: 22px; font-weight: 900; min-width: 36px;
-    color: var(--lime); line-height: 1;
-  }
-  .prog-item:not(.kickoff) .prog-num { color: var(--black); }
-  .prog-item:hover:not(.kickoff) .prog-num { color: var(--black); }
-  .prog-item.capsula .prog-num { color: #aaa; }
-  .prog-item-title { font-size: 14px; font-weight: 900; text-transform: uppercase; margin-bottom: 3px; line-height: 1.2; }
-  .prog-item-sub { font-size: 12px; opacity: 0.55; }
-  .prog-tag {
-    margin-left: auto; align-self: flex-start; min-width: fit-content;
-    font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 100px;
-    background: rgba(200,240,0,0.15); color: #666;
-  }
-  .prog-item.kickoff .prog-tag { background: rgba(200,240,0,0.15); color: var(--lime); }
+  .capsule-title { font-size: clamp(22px, 3vw, 30px); font-weight: 900; text-transform: uppercase; line-height: 1.05; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .capsule-hook { font-size: 14px; font-style: italic; opacity: 0.65; max-width: 460px; line-height: 1.5; }
+  .capsule-meta { text-align: right; min-width: 200px; }
+  .capsule-date { font-size: 14px; font-weight: 900; text-transform: uppercase; }
+  .capsule-speaker { font-size: 12px; opacity: 0.6; margin-top: 4px; }
+  .capsule-price { font-size: 22px; font-weight: 900; margin-top: 10px; }
+  .capsule-price span { font-size: 11px; font-weight: 700; opacity: 0.5; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .capsule-body { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .capsule-body { grid-template-columns: 1fr; } .capsule-meta { text-align: left; } .capsule-top { flex-direction: column; } }
+  .capsule-col-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.45; margin-bottom: 12px; }
+  .capsule-list { display: flex; flex-direction: column; gap: 12px; }
+  .capsule-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; list-style: none; }
+  .capsule-list li::before { content: "→"; color: var(--black); font-weight: 900; min-width: 16px; }
+  .capsule-card.dark-bg .capsule-list li::before { color: var(--lime); }
+  .capsule-footer { margin-top: 26px; display: flex; justify-content: flex-end; }
+  @media (max-width: 680px) { .capsule-footer { justify-content: flex-start; } }
 
   /* ── FACILITADORAS ── */
-  .fac-hero-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;
-  }
-  @media (max-width: 600px) { .fac-hero-grid { grid-template-columns: 1fr; } }
-  .fac-hero-card {
-    border-radius: 20px; overflow: hidden; border: 3px solid var(--black);
-    position: relative;
-  }
-  .fac-hero-img {
-    width: 100%; aspect-ratio: 3/2; object-fit: cover; object-position: top;
-    display: block;
-  }
-  .fac-hero-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-    padding: 28px 24px 20px;
-  }
-  .fac-hero-role { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--lime); margin-bottom: 4px; }
-  .fac-hero-name { font-size: 22px; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 4px; }
-  .fac-hero-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.4; }
-
-  .speakers-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-  }
+  .speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   @media (max-width: 700px) { .speakers-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 440px) { .speakers-grid { grid-template-columns: 1fr; } }
-  .speaker-card {
-    border: 2px solid var(--black); border-radius: 20px; overflow: hidden;
-    background: var(--white); transition: transform 0.2s;
-  }
+  .speaker-card { border: 2px solid var(--black); border-radius: 20px; overflow: hidden; background: var(--white); transition: transform 0.2s; }
   .speaker-card:hover { transform: translateY(-4px); }
-  .speaker-img-wrap {
-    width: 100%; aspect-ratio: 1/1; overflow: hidden; background: var(--gray);
-    position: relative;
-  }
+  .speaker-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: var(--gray); position: relative; }
   .speaker-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .speaker-initials {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px; font-weight: 900; color: var(--black);
-    background: var(--lime);
-  }
   .speaker-tag {
     position: absolute; bottom: 10px; left: 10px;
     font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 100px;
-    background: var(--black); color: var(--lime);
+    padding: 4px 10px; border-radius: 100px; background: var(--black); color: var(--lime);
   }
   .speaker-info { padding: 18px 20px; }
   .speaker-name { font-size: 17px; font-weight: 900; margin-bottom: 4px; line-height: 1.1; }
@@ -347,93 +250,65 @@
   .speaker-linkedin:hover { border-color: var(--black); color: var(--black); }
 
   /* ── PRICING ── */
-  .pricing-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 12px;
-  }
-  @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; max-width: 400px; } }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; max-width: 720px; }
+  @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
   .price-card {
     border: 2px solid var(--black); border-radius: 24px; padding: 32px 28px;
     position: relative; background: var(--white);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-  .price-card.featured {
-    background: var(--black); color: var(--white); border-color: var(--black);
-  }
+  .price-card.featured { background: var(--black); color: var(--white); border-color: var(--black); }
   .price-badge {
     position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
     font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
     background: var(--lime); color: var(--black);
     padding: 5px 16px; border-radius: 100px; white-space: nowrap;
   }
-  .price-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-    opacity: 0.45; margin-bottom: 12px;
-  }
+  .price-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.45; margin-bottom: 12px; }
   .price-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
-  .price-amount {
-    font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1;
-    margin-bottom: 6px;
-  }
-  .price-amount .currency { font-size: 18px; font-weight: 700; opacity: 0.5; }
+  .price-amount { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+  .price-amount .currency { font-size: 16px; font-weight: 700; opacity: 0.5; }
   .price-sub { font-size: 13px; opacity: 0.5; margin-bottom: 20px; }
   .price-detail { font-size: 13px; line-height: 1.6; opacity: 0.7; }
   .price-card.featured .price-amount { color: var(--lime); }
+  .price-save {
+    display: inline-block; margin-top: 14px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    background: var(--lime); color: var(--black);
+    padding: 5px 12px; border-radius: 100px;
+  }
 
   /* ── FINAL CTA ── */
-  .cta-section {
-    background: var(--black); padding: 96px 40px;
-    text-align: center; position: relative; overflow: hidden;
-  }
+  .cta-section { background: var(--black); padding: 96px 40px; text-align: center; position: relative; overflow: hidden; }
   .cta-tag {
-    display: inline-block;
-    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    background: var(--lime); color: var(--black);
-    padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    background: var(--lime); color: var(--black); padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
   }
   .cta-title {
-    font-size: clamp(36px, 6vw, 76px); font-weight: 900; line-height: 0.92;
+    font-size: clamp(32px, 5.5vw, 68px); font-weight: 900; line-height: 0.95;
     color: var(--white); text-transform: uppercase; letter-spacing: -2px;
     max-width: 780px; margin: 0 auto 20px;
   }
   .cta-title em { font-style: normal; color: var(--lime); }
   .cta-sub { font-size: 17px; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 48px; line-height: 1.6; }
   .cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; }
-  .cta-deco {
-    position: absolute; right: -100px; bottom: -100px;
-    width: 500px; height: 500px;
-    background: var(--lime); border-radius: 50%; opacity: 0.04; pointer-events: none;
-  }
-  .cta-deco2 {
-    position: absolute; left: -60px; top: -60px;
-    width: 300px; height: 300px;
-    background: var(--lime); border-radius: 50%; opacity: 0.03; pointer-events: none;
-  }
-  .cta-note {
-    margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25);
-    letter-spacing: 1px; text-transform: uppercase;
-  }
+  .cta-deco { position: absolute; right: -100px; bottom: -100px; width: 500px; height: 500px; background: var(--lime); border-radius: 50%; opacity: 0.04; pointer-events: none; }
+  .cta-deco2 { position: absolute; left: -60px; top: -60px; width: 300px; height: 300px; background: var(--lime); border-radius: 50%; opacity: 0.03; pointer-events: none; }
+  .cta-note { margin-top: 28px; font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 1px; text-transform: uppercase; }
 
   /* ── FOOTER ── */
   footer {
     background: var(--white); border-top: 2px solid var(--black);
-    padding: 24px 40px;
-    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 12px;
   }
   .footer-logo { font-weight: 900; font-size: 16px; }
   .footer-meta { font-size: 12px; color: var(--mid-gray); }
-  .footer-tag {
-    font-size: 11px; font-weight: 700;
-    background: var(--gray); padding: 5px 14px;
-    border-radius: 100px; letter-spacing: 1px; text-transform: uppercase;
-  }
+  .footer-tag { font-size: 11px; font-weight: 700; background: var(--gray); padding: 5px 14px; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase; }
 
   /* ── LIME BAR ── */
   .lime-bar { height: 6px; background: var(--lime); }
-
-  /* ── DIVIDER ── */
-  .divider { border: none; border-top: 2px solid var(--black); margin: 0; }
 </style>
 </head>
 <body>
@@ -441,7 +316,7 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">KODO</a>
-  <a class="nav-cta" href="https://wa.link/b0tvp5" target="_blank">Quiero entrar →</a>
+  <a class="nav-cta" href="https://wa.link/b0tvp5" target="_blank">Quiero mi cápsula →</a>
 </nav>
 
 <!-- ══════════════════════════════════════════════
@@ -451,23 +326,24 @@
   <div class="hero-deco"></div>
   <div class="hero-deco2"></div>
   <div class="container">
-    <p class="hero-eyebrow">📘 Formación en Reclutamiento Estratégico · Edición 1.26</p>
+    <p class="hero-eyebrow">🎓 Cápsulas Kodo · Formación en Reclutamiento Estratégico</p>
     <h1 class="hero-title">
-      Dejá de<br>
-      ejecutar.<br>
-      Empezá a<br>
-      <span class="hl">resolver.</span>
+      Sabés<br>
+      reclutar.<br>
+      Sumale<br>
+      <span class="hl">criterio.</span>
     </h1>
-    <p class="hero-sub">La formación que convierte reclutadores operativos en socios estratégicos del negocio. 12 encuentros en vivo. Método propio. Resultados concretos.</p>
+    <p class="hero-subtitle">Elegí tu cápsula. O llevate las tres.</p>
+    <p class="hero-sub">Tres encuentros en vivo de 2 horas, cada uno con una especialista invitada — pensados para reclutadoras y reclutadores que ya están en acción y quieren profundizar en un tema puntual: IA, entrevistas o procesos inclusivos.</p>
     <div class="hero-pills">
-      <span class="hero-pill lime">Inicio Lunes 9 de Junio</span>
-      <span class="hero-pill">12 encuentros en vivo</span>
+      <span class="hero-pill lime">3 cápsulas independientes</span>
+      <span class="hero-pill">2hs en vivo c/u</span>
       <span class="hero-pill">Martes 18:30hs</span>
-      <span class="hero-pill">Cohorte exclusiva</span>
+      <span class="hero-pill">Especialistas invitadas</span>
     </div>
     <div class="hero-btns">
-      <a class="btn-primary" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero entrar desde el Lunes 9</a>
-      <a class="btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSemZ8Mq4YQ2F-hNxinayInzcXnQRZgLnrF5rNkcn7mY4IGn_w/viewform" target="_blank">Avisame la próxima edición →</a>
+      <a class="btn-primary" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero entrar a una cápsula</a>
+      <a class="btn-secondary" href="#capsulas">Ver las 3 cápsulas →</a>
     </div>
   </div>
 </section>
@@ -475,27 +351,27 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <span>Hiring Humans Not Resources</span><span>De Operativo a Estratégico</span><span>IA como Copiloto</span><span>12 Encuentros en Vivo</span><span>Edición 1.26</span><span>Martes 18:30hs</span><span>Hiring Humans Not Resources</span><span>De Operativo a Estratégico</span><span>IA como Copiloto</span><span>12 Encuentros en Vivo</span><span>Edición 1.26</span><span>Martes 18:30hs</span>
+    <span>IA Como Copiloto</span><span>El Poder De Las Preguntas</span><span>Reclutamiento Inclusivo</span><span>3 Cápsulas Independientes</span><span>2hs En Vivo</span><span>Promo 3x2</span><span>IA Como Copiloto</span><span>El Poder De Las Preguntas</span><span>Reclutamiento Inclusivo</span><span>3 Cápsulas Independientes</span><span>2hs En Vivo</span><span>Promo 3x2</span>
   </div>
 </div>
 
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">12</div>
-    <div class="stat-label">Encuentros sincrónicos</div>
+    <div class="stat-num">3</div>
+    <div class="stat-label">Cápsulas independientes</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="font-size:32px; letter-spacing:-1px;">Jun→Ago</div>
-    <div class="stat-label">02 Jun · Cierre 26 Ago</div>
+    <div class="stat-num" style="font-size:30px; letter-spacing:-1px;">Jul→Ago</div>
+    <div class="stat-label">14 Jul · 4 y 18 Ago</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">60<span style="font-size:22px; opacity:0.5;">%</span></div>
-    <div class="stat-label">Práctica real</div>
+    <div class="stat-num">2<span style="font-size:20px; opacity:0.5;">hs</span></div>
+    <div class="stat-label">Cada encuentro en vivo</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num" style="color:var(--lime); background:var(--black); padding: 4px 14px; border-radius: 10px; display:inline-block;">15</div>
-    <div class="stat-label" style="margin-top: 10px;">Cupos por edición</div>
+    <div class="stat-num" style="color:var(--lime); background:var(--black); padding: 4px 14px; border-radius: 10px; display:inline-block;">3x2</div>
+    <div class="stat-label" style="margin-top: 10px;">Llevando el pack completo</div>
   </div>
 </div>
 
@@ -506,277 +382,149 @@
   <div class="container">
     <span class="section-label">¿Para quién es esto?</span>
     <h2 class="section-title">¿Esto te <span class="accent">suena?</span></h2>
-    <p class="section-intro">Esta formación es para vos si reconocés alguna de estas situaciones en tu día a día.</p>
+    <p class="section-intro">Estas cápsulas son para reclutadoras y reclutadores con oficio, que ya están en acción y buscan el upgrade puntual en un tema específico. Te identificás si:</p>
     <div class="pain-grid">
       <div class="pain-item">
-        <span class="pain-check">😓</span>
-        <p class="pain-text">Recibís un brief y arrancás a publicar sin cuestionar si la búsqueda tiene sentido tal como viene.</p>
-      </div>
-      <div class="pain-item">
-        <span class="pain-check">🔄</span>
-        <p class="pain-text">Presentás candidatos y el cliente siempre pide "algo más" — sin nunca quedar del todo conforme.</p>
-      </div>
-      <div class="pain-item">
-        <span class="pain-check">🧱</span>
-        <p class="pain-text">Sabés que podés aportar mucho más al negocio, pero no encontrás cómo posicionarte diferente ante el cliente interno.</p>
+        <span class="pain-check">🎯</span>
+        <p class="pain-text">Sabés reclutar, pero sentís que te falta filo en un tema puntual y querés profundizar ahí.</p>
       </div>
       <div class="pain-item">
         <span class="pain-check">🤖</span>
-        <p class="pain-text">La IA te genera más dudas que respuestas: ¿te reemplaza o te potencia? No sabés cómo integrarla sin perder el foco humano.</p>
+        <p class="pain-text">La IA te genera más dudas que respuestas y no sabés cómo usarla sin perder criterio humano.</p>
       </div>
       <div class="pain-item">
-        <span class="pain-check">📋</span>
-        <p class="pain-text">Seguís procesos heredados sin saber muy bien por qué — y algo te dice que hay una forma mucho más eficiente de trabajar.</p>
+        <span class="pain-check">❓</span>
+        <p class="pain-text">En las entrevistas terminás confirmando lo que ya pensabas, en vez de descubrir algo nuevo.</p>
       </div>
       <div class="pain-item">
-        <span class="pain-check">🎯</span>
-        <p class="pain-text">Querés que el reclutamiento te siente en la mesa de decisiones, no solo te llame cuando hay una posición para cubrir.</p>
+        <span class="pain-check">🧱</span>
+        <p class="pain-text">Sospechás que tus búsquedas excluyen, sin querer, buen talento por requisitos que no son esenciales.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-check">💬</span>
+        <p class="pain-text">Necesitás argumentos concretos para llevarle al negocio una mirada DEI, no solo un discurso.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-check">⚡</span>
+        <p class="pain-text">Preferís una experiencia corta e inmersiva — 2 horas, un especialista, aplicable desde el día siguiente.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════
-     POR QUÉ ES DIFERENTE
+     LAS 3 CÁPSULAS
 ══════════════════════════════════════════════ -->
-<section>
+<section id="capsulas">
   <div class="container">
-    <span class="section-label">Por qué es diferente</span>
-    <h2 class="section-title">No es un curso más.<br><span class="accent">Es un cambio de lente.</span></h2>
-    <p class="section-intro">Diseñamos esta formación porque no encontramos nada en el mercado que realmente preparara reclutadores para operar con criterio estratégico, no solo con eficiencia operativa.</p>
-    <div class="diff-grid">
-      <div class="diff-card">
-        <div class="diff-num">60%</div>
-        <p class="diff-title">Práctica real</p>
-        <p class="diff-body">Cada sesión incluye ejercicios, casos y debates. El aprendizaje que pasa por el cuerpo deja huella.</p>
-      </div>
-      <div class="diff-card lime-bg">
-        <div class="diff-num">15</div>
-        <p class="diff-title">Cupos por cohorte</p>
-        <p class="diff-body">Formato artesanal e inmersivo. No somos un webinar — somos un espacio donde te conocemos por nombre y te damos feedback real.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-num">3</div>
-        <p class="diff-title">Cápsulas con especialistas</p>
-        <p class="diff-body">IA aplicada al reclutamiento, el arte de la entrevista y diversidad e inclusión. Conocimiento de frontera en cada área.</p>
-      </div>
-      <div class="diff-card" style="background:#1d1d1d;">
-        <div class="diff-num">1</div>
-        <p class="diff-title">Mentora de prácticas</p>
-        <p class="diff-body">Agostina Henin te acompaña en cada misión semanal con feedback personalizado — no dejamos que aprendas solo/a.</p>
-      </div>
-      <div class="diff-card" style="background:#131313;">
-        <div class="diff-num">∞</div>
-        <p class="diff-title">Método propio</p>
-        <p class="diff-body">No enseñamos teoría de manual. Enseñamos la metodología que usamos en nuestros propios procesos de selección, testeada en la trinchera.</p>
-      </div>
-      <div class="diff-card lime-bg">
-        <div class="diff-num" style="opacity:0.15">→</div>
-        <p class="diff-title">Tu propio proceso</p>
-        <p class="diff-body">Al terminar no solo sabés cómo trabaja Kodo. Te llevás la estructura de tu propio proceso estratégico, fiel a tus valores.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <span class="section-label">Las cápsulas</span>
+    <h2 class="section-title">3 especialistas.<br><span class="accent">3 cápsulas a fondo.</span></h2>
+    <p class="section-intro">Cada cápsula es un encuentro en vivo de 2 horas, con una especialista invitada y foco 100% aplicable a tu trabajo del día siguiente.</p>
 
-<!-- LIME BAR -->
-<div class="lime-bar"></div>
+    <div class="capsules-stack">
 
-<!-- ══════════════════════════════════════════════
-     METODOLOGÍA + FECHAS
-══════════════════════════════════════════════ -->
-<section class="alt">
-  <div class="container">
-    <span class="section-label">Cómo funciona</span>
-    <h2 class="section-title">Metodología <span class="accent">& formato</span></h2>
-    <div class="meta-grid">
-      <img class="meta-image" src="ambient1.png" alt="Formación Kodo" onerror="this.style.display='none'">
-      <div class="meta-items">
-        <div class="meta-item">
-          <div class="meta-icon">📅</div>
+      <!-- CÁPSULA 1 — IA -->
+      <div class="capsule-card dark-bg">
+        <div class="capsule-top">
           <div>
-            <p class="meta-item-title">Fechas & horario</p>
-            <p class="meta-item-body">Lunes 9 de Junio → 26 de Agosto de 2026<br>Martes de 18:30 a 20:00hs (Argentina)<br>12 encuentros en vivo · 1.5hs cada uno</p>
+            <span class="capsule-badge">Cápsula 1 · IA Aplicada</span>
+            <p class="capsule-title">IA aplicada al reclutamiento</p>
+            <p class="capsule-hook">"La IA funciona mejor como copiloto que como piloto automático."</p>
+          </div>
+          <div class="capsule-meta">
+            <p class="capsule-date">Martes 14 de Julio</p>
+            <p class="capsule-speaker">18:30 a 20:30hs · Con Agostina Bobarini</p>
+            <p class="capsule-price"><span>Individual</span>ARS 70.000</p>
           </div>
         </div>
-        <div class="meta-item">
-          <div class="meta-icon">💻</div>
+        <div class="capsule-body">
           <div>
-            <p class="meta-item-title">100% online y en vivo</p>
-            <p class="meta-item-body">Todos los encuentros son sincrónicos. Cada sesión queda grabada para que puedas repasar cuando necesites.</p>
+            <p class="capsule-col-title">De qué se trata</p>
+            <p style="font-size:14px; line-height:1.6; opacity:0.75;">Sourcing inteligente, prompting estratégico y criterio para usar IA sin perder lo humano. Casos reales, demostraciones en vivo y construcción colaborativa de prompts — no solo teoría de herramientas.</p>
+          </div>
+          <div>
+            <p class="capsule-col-title">Te llevás</p>
+            <ul class="capsule-list">
+              <li>Un framework de prompting (Contexto + Objetivo + Input + Output) aplicado a tareas reales de reclutamiento.</li>
+              <li>Estrategias de sourcing inteligente para encontrar perfiles que el ATS descarta.</li>
+              <li>Criterio claro sobre qué delegarle a la IA y qué nunca delegar.</li>
+              <li>Mapa de riesgos y sesgos para usarla de forma responsable.</li>
+            </ul>
           </div>
         </div>
-        <div class="meta-item">
-          <div class="meta-icon">🏋️</div>
-          <div>
-            <p class="meta-item-title">60% práctica, 40% teoría</p>
-            <p class="meta-item-body">Talleres, debates de casos reales, misiones semanales y feedback de mentora. Aprendizaje que se incorpora, no que se olvida.</p>
-          </div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-icon">🤝</div>
-          <div>
-            <p class="meta-item-title">Acompañamiento continuo</p>
-            <p class="meta-item-body">Grupo privado de WhatsApp + feedback personalizado en cada misión de práctica. No estás sola/o en el proceso.</p>
-          </div>
+        <div class="capsule-footer">
+          <a class="btn-small" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero esta cápsula →</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════════════════════
-     QUÉ TE LLEVÁS
-══════════════════════════════════════════════ -->
-<section class="dark">
-  <div class="container">
-    <span class="section-label" style="background:var(--lime); color:var(--black);">Qué te llevás</span>
-    <h2 class="section-title" style="color:var(--white);">Al terminar,<br><span class="accent">sos otro/a reclutador/a.</span></h2>
-    <p class="section-intro">Esto no es una promesa de marca. Es lo que reportan quienes ya pasaron por la experiencia piloto.</p>
-    <div class="outcomes-grid">
-      <div class="outcome-item">
-        <div class="outcome-icon">🗺️</div>
-        <div>
-          <p class="outcome-title">Tu propio proceso estratégico</p>
-          <p class="outcome-body">No el proceso de Kodo. El tuyo: fiel a tus valores, a tu contexto y a tu forma de conectar con el mundo.</p>
+      <!-- CÁPSULA 2 — PREGUNTAS -->
+      <div class="capsule-card">
+        <div class="capsule-top">
+          <div>
+            <span class="capsule-badge">Cápsula 2 · Entrevistas</span>
+            <p class="capsule-title">El poder de las preguntas</p>
+            <p class="capsule-hook">"El fondo le gana a la forma. La curiosidad como base."</p>
+          </div>
+          <div class="capsule-meta">
+            <p class="capsule-date">Martes 4 de Agosto</p>
+            <p class="capsule-speaker">18:30 a 20:30hs · Con María Laura Amaya</p>
+            <p class="capsule-price"><span>Individual</span>ARS 70.000</p>
+          </div>
+        </div>
+        <div class="capsule-body">
+          <div>
+            <p class="capsule-col-title">De qué se trata</p>
+            <p style="font-size:14px; line-height:1.6; opacity:0.75;">Dejar de hacer preguntas que confirman lo que ya pensás, para empezar a preguntar desde la curiosidad real. Escucha activa, repregunta y chequeo de entendimiento — con ejercicios sobre casos de entrevista reales.</p>
+          </div>
+          <div>
+            <p class="capsule-col-title">Te llevás</p>
+            <ul class="capsule-list">
+              <li>La técnica de repregunta para profundizar sin incomodar al candidato.</li>
+              <li>Cómo distinguir una pregunta que juzga de una que abre.</li>
+              <li>Un chequeo de entendimiento para no asumir lo que el otro quiso decir.</li>
+              <li>Ejercicios prácticos para transformar preguntas genéricas en preguntas estratégicas.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="capsule-footer">
+          <a class="btn-small" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero esta cápsula →</a>
         </div>
       </div>
-      <div class="outcome-item">
-        <div class="outcome-icon">💬</div>
-        <div>
-          <p class="outcome-title">El lenguaje del negocio</p>
-          <p class="outcome-body">Hablar de métricas, costo de oportunidad y objetivos de escala con el cliente interno sin titubear.</p>
-        </div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-icon">🔺</div>
-        <div>
-          <p class="outcome-title">El Triángulo de Oro</p>
-          <p class="outcome-body">Una herramienta concreta para gestionar cualquier búsqueda — y saber cuándo y cómo decirle no a un cliente.</p>
-        </div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-icon">🤖</div>
-        <div>
-          <p class="outcome-title">IA como copiloto real</p>
-          <p class="outcome-body">Prompts concretos, flujos de trabajo y criterio para saber qué delegar a la IA y qué nunca delegar.</p>
-        </div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-icon">🧲</div>
-        <div>
-          <p class="outcome-title">Sourcing que funciona</p>
-          <p class="outcome-body">Boolean search, perfiles pasivos, comunidades de nicho. Encontrar al candidato que la competencia no ve.</p>
-        </div>
-      </div>
-      <div class="outcome-item">
-        <div class="outcome-icon">🤝</div>
-        <div>
-          <p class="outcome-title">Red de colegas estratégicos</p>
-          <p class="outcome-body">Un grupo de personas que hablan tu mismo código — con quienes consultar, colaborar y crecer después del programa.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════════════════════
-     EL PROGRAMA
-══════════════════════════════════════════════ -->
-<section>
-  <div class="container">
-    <span class="section-label">El programa</span>
-    <h2 class="section-title">12 encuentros.<br><span class="accent">Todo el recorrido.</span></h2>
-    <p class="section-intro">Del primer brief al cierre ético. Un programa que cubre todas las etapas del proceso de selección con profundidad estratégica.</p>
-    <div class="programa-grid">
-      <div class="prog-item kickoff">
-        <div class="prog-num">00</div>
-        <div>
-          <p class="prog-item-title">Kick-off · El ADN Kodo</p>
-          <p class="prog-item-sub">2 Jun · Propósito, 4 pilares y Triángulo de Oro</p>
+      <!-- CÁPSULA 3 — DEI -->
+      <div class="capsule-card dark-bg">
+        <div class="capsule-top">
+          <div>
+            <span class="capsule-badge">Cápsula 3 · Inclusión & DEI</span>
+            <p class="capsule-title">De la vacante a la oportunidad</p>
+            <p class="capsule-hook">"La mirada DEI no compite con el negocio: la potencia."</p>
+          </div>
+          <div class="capsule-meta">
+            <p class="capsule-date">Martes 18 de Agosto</p>
+            <p class="capsule-speaker">18:30 a 20:30hs · Con Tati Asencio</p>
+            <p class="capsule-price"><span>Individual</span>ARS 70.000</p>
+          </div>
         </div>
-        <span class="prog-tag">Inicio</span>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">01</div>
-        <div>
-          <p class="prog-item-title">Discovery Call</p>
-          <p class="prog-item-sub">9 Jun · El arte de entender antes de buscar</p>
+        <div class="capsule-body">
+          <div>
+            <p class="capsule-col-title">De qué se trata</p>
+            <p style="font-size:14px; line-height:1.6; opacity:0.75;">Diversidad, equidad e inclusión aplicadas a cada etapa del proceso: definición de perfil, avisos, entrevistas y onboarding. Con datos concretos para defender una búsqueda inclusiva frente al cliente interno.</p>
+          </div>
+          <div>
+            <p class="capsule-col-title">Te llevás</p>
+            <ul class="capsule-list">
+              <li>Un checklist para detectar sesgo en un pedido de búsqueda antes de publicarlo.</li>
+              <li>Cómo redactar avisos de empleo inclusivos (lenguaje, requisitos, accesibilidad).</li>
+              <li>Estructura de entrevista objetiva y comparable entre candidatos.</li>
+              <li>Argumentos de negocio (datos OIT) para defender una búsqueda inclusiva ante el cliente.</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">02</div>
-        <div>
-          <p class="prog-item-title">Job Description</p>
-          <p class="prog-item-sub">16 Jun · Escribir para atraer, no para filtrar</p>
-        </div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">03</div>
-        <div>
-          <p class="prog-item-title">Perfil: Generalista & IT</p>
-          <p class="prog-item-sub">23 Jun · Leer entre líneas del mercado</p>
+        <div class="capsule-footer">
+          <a class="btn-small" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero esta cápsula →</a>
         </div>
       </div>
-      <div class="prog-item">
-        <div class="prog-num">04</div>
-        <div>
-          <p class="prog-item-title">Sourcing & Boolean</p>
-          <p class="prog-item-sub">30 Jun · Encontrar a quienes no te buscan</p>
-        </div>
-      </div>
-      <div class="prog-item capsula">
-        <div class="prog-num">★</div>
-        <div>
-          <p class="prog-item-title">Cápsula — IA Aplicada</p>
-          <p class="prog-item-sub">Con Agostina Bobarini · Prompts y sourcing inteligente</p>
-        </div>
-        <span class="prog-tag">Cápsula</span>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">05</div>
-        <div>
-          <p class="prog-item-title">Copywriting & Abordaje</p>
-          <p class="prog-item-sub">7 Jul · Mensajes que abren puertas + disección de CV</p>
-        </div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">06</div>
-        <div>
-          <p class="prog-item-title">Entrevista Conductual</p>
-          <p class="prog-item-sub">14 Jul · Técnica STAR y preguntas que revelan</p>
-        </div>
-      </div>
-      <div class="prog-item capsula">
-        <div class="prog-num">★</div>
-        <div>
-          <p class="prog-item-title">Cápsula — El arte de entrevistar</p>
-          <p class="prog-item-sub">Con María Laura Amaya · Escucha activa y repreguntas</p>
-        </div>
-        <span class="prog-tag">Cápsula</span>
-      </div>
-      <div class="prog-item capsula">
-        <div class="prog-num">★</div>
-        <div>
-          <p class="prog-item-title">Cápsula — Inclusión & DEI</p>
-          <p class="prog-item-sub">Con Tati Asencio · Menos sesgo, más talento real</p>
-        </div>
-        <span class="prog-tag">Cápsula</span>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">07</div>
-        <div>
-          <p class="prog-item-title">Informe & Métricas</p>
-          <p class="prog-item-sub">21 Jul · Hablar el lenguaje del negocio con datos</p>
-        </div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-num">08</div>
-        <div>
-          <p class="prog-item-title">Cierre & Ética</p>
-          <p class="prog-item-sub">28 Jul · Contraoferta, ghosting y candidate experience</p>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -791,49 +539,8 @@
   <div class="container">
     <span class="section-label">Quiénes enseñan</span>
     <h2 class="section-title">Aprendés de<br><span class="accent">quienes lo hacen.</span></h2>
-    <p class="section-intro">No teóricos de manual. Profesionales que siguen en la trinchera — con procesos reales, errores propios y criterio ganado en campo.</p>
-
-    <!-- EQUIPO KODO: Cande · Mer · Agostina Henin -->
-    <p style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:16px; margin-top:0;">Equipo Kodo</p>
-    <div class="speakers-grid" style="margin-top: 0;">
-      <div class="speaker-card">
-        <div class="speaker-img-wrap">
-          <img class="speaker-img" src="cande-rivetti.jpg" alt="Cande Rivetti">
-          <span class="speaker-tag">Facilitadora</span>
-        </div>
-        <div class="speaker-info">
-          <p class="speaker-name">Cande Rivetti</p>
-          <p class="speaker-role">Co-founder · Abogada | Project Manager. Líder de la vertical de reclutamiento en KodoHR.</p>
-          <a class="speaker-linkedin" href="https://www.linkedin.com/in/candelarivetti/" target="_blank">LinkedIn →</a>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img-wrap">
-          <img class="speaker-img" src="mer-borras.jpg" alt="Mer Borrás">
-          <span class="speaker-tag">Facilitadora</span>
-        </div>
-        <div class="speaker-info">
-          <p class="speaker-name">Mer Borrás</p>
-          <p class="speaker-role">Co-founder · Lic. en RRHH. Líder de la vertical de People Ops en KodoHR.</p>
-          <a class="speaker-linkedin" href="https://www.linkedin.com/in/mercedesborras/" target="_blank">LinkedIn →</a>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img-wrap">
-          <img class="speaker-img" src="agos-henin.jpg" alt="Agostina Henin">
-          <span class="speaker-tag">Mentora</span>
-        </div>
-        <div class="speaker-info">
-          <p class="speaker-name">Agostina Henin</p>
-          <p class="speaker-role">Talent Acquisition Specialist. Mentora de las misiones prácticas semanales en Kodo.</p>
-          <a class="speaker-linkedin" href="https://www.linkedin.com/in/agostinahenin/" target="_blank">LinkedIn →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SPEAKERS DE CÁPSULAS -->
-    <p style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:16px; margin-top:28px;">Speakers invitadas</p>
-    <div class="speakers-grid" style="margin-top: 0;">
+    <p class="section-intro">No teóricas de manual. Profesionales que siguen en la trinchera — con procesos reales, errores propios y criterio ganado en campo.</p>
+    <div class="speakers-grid">
       <div class="speaker-card">
         <div class="speaker-img-wrap">
           <img class="speaker-img" src="agos-bobarini.png" alt="Agostina Bobarini">
@@ -877,33 +584,27 @@
 <section>
   <div class="container">
     <span class="section-label">Inversión</span>
-    <h2 class="section-title">Elegí la forma<br><span class="accent">que te funciona.</span></h2>
-    <p class="section-intro">Un precio, tres formas de pagarlo. Sin letra chica.</p>
+    <h2 class="section-title">Una cápsula,<br><span class="accent">o las tres con promo.</span></h2>
+    <p class="section-intro">Precio por transferencia. Sin letra chica.</p>
     <div class="pricing-grid">
       <div class="price-card">
-        <p class="price-label">Contado</p>
-        <span class="price-emoji">💰</span>
-        <p class="price-amount"><span class="currency">$</span>500.000</p>
-        <p class="price-sub">Pago único · Transferencia</p>
-        <p class="price-detail">El mejor precio. Una sola transferencia y listo — acceso completo a los 12 encuentros, las 3 cápsulas y la mentoría de prácticas.</p>
+        <p class="price-label">Cápsula individual</p>
+        <span class="price-emoji">🎯</span>
+        <p class="price-amount"><span class="currency">ARS</span> 70.000</p>
+        <p class="price-sub">Por transferencia · Elegís la cápsula</p>
+        <p class="price-detail">Acceso a un encuentro en vivo de 2hs con la especialista invitada. Ideal si te interesa un tema puntual.</p>
       </div>
       <div class="price-card featured">
-        <span class="price-badge">Más elegido</span>
-        <p class="price-label">3 cuotas</p>
+        <span class="price-badge">Más conveniente</span>
+        <p class="price-label">Pack x3 · Promo 3x2</p>
         <span class="price-emoji">🔥</span>
-        <p class="price-amount">3 × <span class="currency">$</span>166.666</p>
-        <p class="price-sub">Sin interés · Débito automático</p>
-        <p class="price-detail">El equilibrio perfecto entre accesibilidad y precio. Tres pagos iguales, sin recargo. La opción que más elige el squad.</p>
-      </div>
-      <div class="price-card">
-        <p class="price-label">6 cuotas</p>
-        <span class="price-emoji">💣</span>
-        <p class="price-amount">6 × <span class="currency">$</span>89.166</p>
-        <p class="price-sub">Cuotas fijas</p>
-        <p class="price-detail">Máxima accesibilidad. Seis pagos fijos para que ningún tema financiero sea un obstáculo para tu formación estratégica.</p>
+        <p class="price-amount"><span class="currency">ARS</span> 140.000</p>
+        <p class="price-sub">Por transferencia · Las 3 cápsulas</p>
+        <p class="price-detail">Te llevás las 3 cápsulas — IA, Preguntas y DEI — y pagás como si fueran 2.</p>
+        <span class="price-save">Ahorrás ARS 70.000</span>
       </div>
     </div>
-    <p style="text-align:center; margin-top:32px; font-size:13px; color:#888;">¿Querés ver el programa completo antes de decidir? <a href="https://wa.link/b0tvp5" target="_blank" style="color:var(--black); font-weight:700; text-decoration:underline;">Escribinos por WhatsApp →</a></p>
+    <p style="text-align:left; margin-top:32px; font-size:13px; color:#888;">¿Tenés dudas sobre cuál cápsula elegir? <a href="https://wa.link/b0tvp5" target="_blank" style="color:var(--black); font-weight:700; text-decoration:underline;">Escribinos por WhatsApp →</a></p>
   </div>
 </section>
 
@@ -913,20 +614,20 @@
 <section class="cta-section">
   <div class="cta-deco"></div>
   <div class="cta-deco2"></div>
-  <div class="cta-tag">Tu lugar en la mesa</div>
-  <h2 class="cta-title">El reclutamiento<br>que querés <em>hacer</em><br>empieza acá.</h2>
-  <p class="cta-sub">Los cupos son limitados — la edición 1.26 arranca el Lunes 9 de Junio. Si te convoca lo que leíste, es porque este espacio es para vos.</p>
+  <div class="cta-tag">Cupos limitados por cápsula</div>
+  <h2 class="cta-title">Una cápsula puede<br>cambiar cómo <em>reclutás</em><br>desde el martes.</h2>
+  <p class="cta-sub">Elegí la que más te convoca, o llevate las 3 con la promo 3x2. Los encuentros son en vivo — el lugar se reserva con la transferencia.</p>
   <div class="cta-btns">
-    <a class="btn-primary" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero entrar desde el Lunes 9</a>
-    <a class="btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSemZ8Mq4YQ2F-hNxinayInzcXnQRZgLnrF5rNkcn7mY4IGn_w/viewform" target="_blank">Avisame la próxima edición →</a>
+    <a class="btn-primary" href="https://wa.link/b0tvp5" target="_blank">💬 Quiero mi cápsula</a>
+    <a class="btn-secondary" href="#capsulas">Volver a ver las 3 →</a>
   </div>
-  <p class="cta-note">Edición 1.26 · Inicio 9 de Junio · Martes 18:30hs Argentina</p>
+  <p class="cta-note">Cápsulas Kodo · 14 Jul / 4 Ago / 18 Ago · Martes 18:30hs Argentina</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">KODO</span>
-  <span class="footer-meta">Formación en Reclutamiento Estratégico · Edición 1.26</span>
+  <span class="footer-meta">Cápsulas · Formación en Reclutamiento Estratégico · Edición 1.26</span>
   <span class="footer-tag">@kodohr_</span>
 </footer>
 
