@@ -303,6 +303,56 @@
     background: var(--lime); color: var(--black);
     padding: 8px 18px; border-radius: 100px;
   }
+  .transfer-trigger {
+    display: block; width: 100%; margin-top: 22px; text-align: center;
+    background: var(--black); color: var(--lime); border: none; cursor: pointer;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 14px 20px; border-radius: 100px; transition: transform 0.2s;
+  }
+  .transfer-trigger:hover { transform: scale(1.03); }
+  .transfer-trigger.dark { background: var(--lime); color: var(--black); }
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.75);
+    z-index: 999; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: var(--white); border: 2px solid var(--black); border-radius: 24px;
+    max-width: 440px; width: 100%; padding: 36px 32px; position: relative;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 18px; right: 18px; width: 36px; height: 36px;
+    border-radius: 50%; border: 2px solid var(--black); background: var(--white);
+    font-size: 16px; cursor: pointer; line-height: 1;
+  }
+  .modal-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #888; }
+  .modal-title { font-size: 24px; font-weight: 900; margin: 6px 0 4px; letter-spacing: -0.5px; }
+  .modal-sub { font-size: 14px; color: #555; margin-bottom: 20px; }
+  .transfer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0; border-bottom: 1px dashed rgba(0,0,0,0.15); gap: 12px;
+  }
+  .transfer-row:last-of-type { border-bottom: none; }
+  .transfer-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 2px; }
+  .transfer-value { font-size: 15px; font-weight: 900; word-break: break-all; }
+  .copy-btn {
+    flex-shrink: 0; background: var(--gray); border: none; border-radius: 100px;
+    padding: 6px 14px; font-size: 11px; font-weight: 700; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s;
+  }
+  .copy-btn:hover { background: var(--lime); }
+  .modal-note {
+    font-size: 13px; font-weight: 700; line-height: 1.5; color: var(--black);
+    background: var(--gray); border-radius: 12px; padding: 14px 16px; margin: 20px 0;
+  }
+  .modal-cta {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--lime); color: var(--black); width: 100%;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 16px 20px; border-radius: 100px; text-decoration: none; transition: transform 0.2s;
+  }
+  .modal-cta:hover { transform: scale(1.02); }
   .price-headline {
     font-size: clamp(22px, 3vw, 28px); font-weight: 900; line-height: 1.05;
     color: var(--lime); text-transform: uppercase; letter-spacing: -0.5px;
@@ -623,6 +673,7 @@
         <p class="price-amount"><span class="currency">ARS</span> 70.000</p>
         <p class="price-sub">Por transferencia · Elegís la cápsula</p>
         <p class="price-detail">Acceso a un encuentro en vivo de 2hs con la especialista invitada. Ideal si te interesa un tema puntual.</p>
+        <button class="transfer-trigger" onclick="openTransferModal('individual')">Ver datos para transferir →</button>
       </div>
       <div class="price-card featured">
         <span class="price-badge urgent-badge">🔥 ÚLTIMA CHANCE · VENCE 14/7</span>
@@ -632,11 +683,42 @@
         <p class="price-urgency">⏳ Después del 14/7 la cápsula de IA ya pasó y el pack de las 3 deja de existir. Esta es la única ventana para llevártelas todas.</p>
         <p class="price-detail">IA, Preguntas y DEI completas — la tercera, sin cargo.</p>
         <span class="price-save">Ahorrás ARS 70.000</span>
+        <button class="transfer-trigger dark" onclick="openTransferModal('pack')">Ver datos para transferir →</button>
       </div>
     </div>
     <p style="text-align:left; margin-top:32px; font-size:13px; color:#888;">¿Tenés dudas sobre cuál cápsula elegir? <a href="https://wa.link/b0tvp5" target="_blank" style="color:var(--black); font-weight:700; text-decoration:underline;">Escribinos por WhatsApp →</a></p>
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════════
+     MODAL: DATOS PARA TRANSFERIR
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="transferModal" onclick="if(event.target===this) closeTransferModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeTransferModal()" aria-label="Cerrar">✕</button>
+    <span class="modal-eyebrow" id="modalLabel">Cápsula individual</span>
+    <h3 class="modal-title">Datos para transferir</h3>
+    <p class="modal-sub">Monto: <strong id="modalAmount">ARS 70.000</strong></p>
+
+    <div class="transfer-row">
+      <div><span class="transfer-label">Titular</span><p class="transfer-value">Candela Soledad Rivetti</p></div>
+    </div>
+    <div class="transfer-row">
+      <div><span class="transfer-label">Banco</span><p class="transfer-value">Ualá Bank S.A.U.</p></div>
+    </div>
+    <div class="transfer-row">
+      <div><span class="transfer-label">CBU</span><p class="transfer-value">3840200500000003312227</p></div>
+      <button class="copy-btn" onclick="copyValue(this,'3840200500000003312227')">Copiar</button>
+    </div>
+    <div class="transfer-row">
+      <div><span class="transfer-label">Alias</span><p class="transfer-value">KODO.FORMACION</p></div>
+      <button class="copy-btn" onclick="copyValue(this,'KODO.FORMACION')">Copiar</button>
+    </div>
+
+    <p class="modal-note">Hacé la transferencia y mandanos el comprobante por WhatsApp para confirmar tu lugar 👇</p>
+    <a class="modal-cta" href="https://wa.link/b0tvp5" target="_blank">📲 Enviar comprobante por WhatsApp</a>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════
      FINAL CTA
@@ -661,5 +743,29 @@
   <span class="footer-tag">@kodohr_</span>
 </footer>
 
+<script>
+  function openTransferModal(type) {
+    var amount = type === 'pack' ? 'ARS 140.000' : 'ARS 70.000';
+    var label = type === 'pack' ? 'Pack x3 · Pagás 2, te llevás 3' : 'Cápsula individual';
+    document.getElementById('modalAmount').textContent = amount;
+    document.getElementById('modalLabel').textContent = label;
+    document.getElementById('transferModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTransferModal() {
+    document.getElementById('transferModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function copyValue(btn, value) {
+    navigator.clipboard.writeText(value).then(function () {
+      var original = btn.textContent;
+      btn.textContent = 'Copiado ✓';
+      setTimeout(function () { btn.textContent = original; }, 1500);
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeTransferModal();
+  });
+</script>
 </body>
 </html>
